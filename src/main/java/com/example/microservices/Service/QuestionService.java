@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class QuestionService {
 
-    public ResponseEntity<String>allquestion(){
-        return new ResponseEntity<>()
-    }
+
+
+
 }
