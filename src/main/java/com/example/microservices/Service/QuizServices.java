@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,17 +18,18 @@ public class QuizServices {
     @Autowired
     private QuizRepository qrs;
 
-public org.springframework.http.ResponseEntity<?> getAllQuiz(int id){
-    Optional<QuizEntity> a=qrs.findById(id);
-    if(a.isEmpty()){
-        return new org.springframework.http.ResponseEntity<>("not found",HttpStatus.NOT_FOUND);
+    public ResponseEntity<List<QuizEntity>>getAllQuiz(){
+        return new ResponseEntity<>(qrs.findAll(),HttpStatus.OK);
     }
-    else{
-        return new ResponseEntity<>(a.get(),HttpStatus.OK);
+
+    public ResponseEntity<String>createQuiz(QuizEntity quiz){
+         QuizEntity a=new QuizEntity();
+         a.setUser(quiz.getUser());
+         a.setTitle(quiz.getTitle());
+         a.setQuestion(quiz.getQuestion());
+
+         qrs.save(a);
+         return new ResponseEntity<>("quiz created successfully",HttpStatus.OK);
     }
-}
-
-
-
 
 }
