@@ -5,10 +5,7 @@ import com.example.microservices.Repository.QuizRepository;
 import com.example.microservices.Service.QuizServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,10 @@ public class QuizController {
 
 
 
+    }
+
+    @GetMapping("/getQuiz/{id}")
+    public ResponseEntity<?>getQuiz(@PathVariable int id){
+        return qrs.getQuiz(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.microservices.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,5 +17,6 @@ public class UserEntity {
     private String role;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<QuizEntity> quiz;
 }
